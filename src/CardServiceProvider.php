@@ -2,6 +2,7 @@
 
 namespace UiBuilder\Card;
 
+use UiBuilder\Card\View\Card;
 use Illuminate\Support\ServiceProvider;
 
 class CardServiceProvider extends ServiceProvider
@@ -15,7 +16,10 @@ class CardServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'card');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'card');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'card');
+        $this->loadViewComponentsAs('', [
+            Card::class,
+        ]);
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
@@ -54,7 +58,7 @@ class CardServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->singleton('card', function () {
-            return new Card;
+            return new \UiBuilder\Card\Card;
         });
     }
 }
